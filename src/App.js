@@ -1,30 +1,27 @@
 import "./App.css";
-import { AppBar, Typography, Toolbar, Drawer, Button } from "@material-ui/core";
-import { useState } from "react";
 import { Canvas } from "@react-three/fiber";
 import SideBar from "./components/SideBar";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { changeBox } from "../src/features/box";
+import NavigationBar from "./components/NavigationBar";
 
 function App() {
-  const [box, setBox] = useState("Box 1");
-  const [position, setPosition] = useState([-2, 2, 0]);
-  const [color, setcolor] = useState("brown");
+  const currentColor = useSelector((state) => state.color.value);
+  const dispatch = useDispatch();
 
   const Box = (props) => {
     return (
-      <mesh position={position} {...props}>
+      <mesh {...props}>
         <boxGeometry args={[1, 1, 1]} />
-        <meshStandardMaterial attach="material" color={color} />
+        <meshStandardMaterial attach="material" color={currentColor} />
       </mesh>
     );
   };
 
   return (
     <div className="App">
-      <AppBar position="sticky" color="#fff">
-        <Toolbar style={{ display: "flex", justifyContent: "center" }}>
-          <Typography variant="h6">{box}</Typography>
-        </Toolbar>
-      </AppBar>
+      <NavigationBar />
 
       <div
         style={{
@@ -35,35 +32,24 @@ function App() {
           marginTop: "300px",
         }}
       >
-        <Canvas colorManagement>
+        <Canvas colorManagement camera={{ position: [-5, 2, 10], fov: 50 }}>
           <ambientLight intensity={0.3} />
           <Box
             position={[2, 2, 0]}
             color="pink"
             onClick={() => {
-              setBox("Box 2");
+              dispatch(changeBox("Box 2"));
             }}
           />
           <Box
             position={[-2, 2, 0]}
             onClick={() => {
-              setBox("Box 1");
+              dispatch(changeBox("Box 1"));
             }}
           />
         </Canvas>
       </div>
-      <Drawer variant="permanent" anchor="right">
-        <Typography variant="h6" style={{ margin: "50px" }}>
-          Position of the box:
-        </Typography>
-        x-axis: 0 <br /> y-axis: 0 <br /> z-axis: 0
-        <Typography variant="h6" style={{ margin: "50px" }}>
-          Choose Color:
-        </Typography>
-        <Button onClick={() => setcolor("brown")}> Brown </Button>
-        <Button onClick={() => setcolor("blue")}> Blue </Button>
-        <Button onClick={() => setcolor("white")}> White </Button>
-      </Drawer>
+      <SideBar />
     </div>
   );
 }
