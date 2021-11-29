@@ -1,5 +1,5 @@
 import "./App.css";
-import { AppBar, Typography, Toolbar, Drawer } from "@material-ui/core";
+import { AppBar, Typography, Toolbar, Drawer, Button } from "@material-ui/core";
 import { useState } from "react";
 import { Canvas } from "@react-three/fiber";
 
@@ -14,6 +14,8 @@ function App() {
   };
 
   const [box, setBox] = useState("Box 1");
+  const [position, setPosition] = useState([-2, 2, 0]);
+
   return (
     <div className="App">
       <AppBar position="sticky" color="#fff">
@@ -45,7 +47,18 @@ function App() {
           />
         </Canvas>
       </div>
-     
+      <Drawer variant="permanent" anchor="right">
+        <Typography variant="h6" style={{ margin: "50px" }}>
+          Position of the {box}:
+        </Typography>
+        x-axis: 0 y-axis: 0
+        <Typography variant="h6" style={{ margin: "50px" }}>
+          Choose Color:
+        </Typography>
+        <Button > Brown </Button>
+        <Button > Blue </Button>
+        <Button > White </Button>
+      </Drawer>
     </div>
   );
 }
