@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { changeColor } from "../features/color";
 
-const SideBar = () => {
+const SideBar = ({xpos, ypos}) => {
   const currentBox = useSelector((state) => state.box.value);
   const dispatch = useDispatch();
 
@@ -15,7 +15,7 @@ const SideBar = () => {
           Position of the {currentBox}:
         </Typography>
         <Typography style={{ display: "flex", justifyContent: "center" }}>
-          x-axis: 0 <br /> y-axis: 0 <br /> z-axis: 0
+          x-axis: {xpos} <br /> y-axis: {ypos} 
         </Typography>
         <Typography variant="h6" style={{ margin: "50px" }}>
           Choose Color:
