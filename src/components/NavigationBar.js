@@ -7,7 +7,7 @@ const NavigationBar = () => {
   return (
     <AppBar position="sticky" color="#fff">
       <Toolbar style={{ display: "flex", justifyContent: "center" }}>
-        <Typography variant="h6">{currentBox}</Typography>
+        <Typography variant="h3">{currentBox}</Typography>
       </Toolbar>
     </AppBar>
   );

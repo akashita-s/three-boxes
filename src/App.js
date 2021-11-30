@@ -1,21 +1,30 @@
-import "./App.css";
 import { Canvas } from "@react-three/fiber";
 import SideBar from "./components/SideBar";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { changeBox } from "../src/features/box";
 import NavigationBar from "./components/NavigationBar";
+import React from "react";
+import { a, useSpring } from "@react-spring/three";
 
 function App() {
   const currentColor = useSelector((state) => state.color.value);
   const dispatch = useDispatch();
 
-  const Box = (props) => {
+
+
+  const Box = (props, position) => {
+    // const animate = useSpring({
+    //   loop: { reverse: true },
+    //   from: { position: position },
+    //   to: { position: [1, 0, 0] },
+    // });
+
     return (
-      <mesh {...props}>
+      <a.mesh castShadow {...props} >
         <boxGeometry args={[1, 1, 1]} />
         <meshStandardMaterial attach="material" color={currentColor} />
-      </mesh>
+      </a.mesh>
     );
   };
 
@@ -25,24 +34,22 @@ function App() {
 
       <div
         style={{
-          height: "80vh",
-          diplay: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          marginTop: "300px",
+          height: "100vh",
+          marginTop: "200px",
         }}
       >
-        <Canvas colorManagement camera={{ position: [-5, 2, 10], fov: 50 }}>
-          <ambientLight intensity={0.3} />
+        <Canvas colorManagement camera={{ position: [-5, 0, 10], fov: 40 }}>
+          <ambientLight intensity={0.5} />
+          <pointLight position={[-5, -10, -20]} intensity={0.7} />
           <Box
-            position={[2, 2, 0]}
-            color="pink"
+            position={[0, 2, 0]}
             onClick={() => {
               dispatch(changeBox("Box 2"));
             }}
           />
+
           <Box
-            position={[-2, 2, 0]}
+            position={[-4, 2, 0]}
             onClick={() => {
               dispatch(changeBox("Box 1"));
             }}

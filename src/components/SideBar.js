@@ -14,12 +14,14 @@ const SideBar = () => {
         <Typography variant="h6" style={{ margin: "50px" }}>
           Position of the {currentBox}:
         </Typography>
-        x-axis: 0 <br /> y-axis: 0 <br /> z-axis: 0
+        <Typography style={{ display: "flex", justifyContent: "center" }}>
+          x-axis: 0 <br /> y-axis: 0 <br /> z-axis: 0
+        </Typography>
         <Typography variant="h6" style={{ margin: "50px" }}>
           Choose Color:
         </Typography>
-        <Button onClick={() => dispatch(changeColor("brown"))}> Brown </Button>
-        <Button onClick={() => dispatch(changeColor("blue"))}> Blue </Button>
+        <Button onClick={() => dispatch(changeColor("#8a3f3f"))}>Brown</Button>
+        <Button onClick={() => dispatch(changeColor("#3643c9"))}> Blue </Button>
         <Button onClick={() => dispatch(changeColor("white"))}> White </Button>
       </Drawer>
     </div>
