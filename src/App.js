@@ -11,17 +11,16 @@ function App() {
   const currentColor = useSelector((state) => state.color.value);
   const dispatch = useDispatch();
 
+  const Box = (props) => {
 
-
-  const Box = (props, position) => {
-    // const animate = useSpring({
-    //   loop: { reverse: true },
-    //   from: { position: position },
-    //   to: { position: [1, 0, 0] },
-    // });
-
+    const animate = useSpring({
+      loop: { reverse: true },
+      from: { position: [-4, 2, 0] },
+      to: { position: [1, 0, 0] }
+    })
+    
     return (
-      <a.mesh castShadow {...props} >
+      <a.mesh castShadow {...props}{...animate}>
         <boxGeometry args={[1, 1, 1]} />
         <meshStandardMaterial attach="material" color={currentColor} />
       </a.mesh>
