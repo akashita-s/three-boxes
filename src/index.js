@@ -5,6 +5,7 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import boxReducer from "../src/features/box";
 import colorReducer from "../src/features/color";
+import inputReducer from "../src/features/inputdata";
 import { Provider } from "react-redux";
 import { configureStore } from "@reduxjs/toolkit";
 
@@ -12,6 +13,7 @@ const store = configureStore({
   reducer: {
     box: boxReducer,
     color: colorReducer,
+    input: inputReducer,
   },
 });
 

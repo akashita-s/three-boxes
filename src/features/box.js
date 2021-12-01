@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialValue = "Box 2";
+const initialValue = "Box 1";
 
 export const boxSlice = createSlice({
   name: "box",
